@@ -1,23 +1,21 @@
-cd ~/jenkinsTest
-cat > jenkinsfile << 'EOF'
 pipeline {
     agent any
-    triggers {
-        pollSCM('* * * * *')
-    }
+
     stages {
-        stage('Checkout Git') {
+        stage('Build') {
             steps {
-                echo 'Pulling...'
-                git branch: 'main',
-                    url: 'https://github.com/YoriStark/jenkinsTest.git'
+                echo 'Building..'
             }
         }
-        stage('Date système') {
+        stage('Test') {
             steps {
-                sh 'date'
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
 }
-EOF

@@ -1,0 +1,22 @@
+cat > Jenkinsfile << 'EOF'
+pipeline {
+    agent any
+    triggers {
+        pollSCM('* * * * *')
+    }
+    stages {
+        stage('Checkout Git') {
+            steps {
+                echo 'Pulling...'
+                git branch: 'main',
+                    url: 'https://github.com/YoriStark/jenkinsTest.git'
+            }
+        }
+        stage('Date système') {
+            steps {
+                sh 'date'
+            }
+        }
+    }
+}
+EOF

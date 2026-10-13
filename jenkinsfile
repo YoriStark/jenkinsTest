@@ -1,3 +1,4 @@
+cd ~/jenkinsTest
 cat > jenkinsfile << 'EOF'
 pipeline {
     agent any

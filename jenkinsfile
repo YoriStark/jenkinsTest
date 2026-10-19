@@ -1,20 +1,19 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('* * * * *')
+    }
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building..'
+                git branch: 'main', url: 'https://github.com/YoriStark/jenkinsTest.git'
             }
         }
-        stage('Test') {
+        stage('Date') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'date'
             }
         }
     }
